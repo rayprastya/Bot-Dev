@@ -60,7 +60,7 @@ MT326 = 'General English IV'
 MT327 = 'Multimedia System'
 MT328 = 'Distributor System'
 
-# Definisi Prodi Per Semester
+# Definisi Prodi Per Semester D4TI
 SEMESTER_1_TINGKAT_1 = [MT111, MT112, MT113, MT114, MT115, MT116, MT117]
 SEMESTER_2_TINGKAT_1 = [MT121, MT122, MT123, MT124, MT125, MT126, MT127]
 
@@ -79,6 +79,7 @@ D4_TI_3 = [SEMESTER_1_TINGKAT_3, SEMESTER_2_TINGKAT_3]
 daftarProdi = [D4TI,D3TI,D3MI,D3A,D4AK,D3MP,D4MP,D3AL,D4LB,D4LN]
 inProdi = ""
 inTingkat = ""
+inSemester = ""
 # Deklarasi Variabel\
 
 # Cek Prodi
@@ -104,9 +105,22 @@ def cekTingkat():
     return inTingkat
 # Cek Tingkat\
 
+# Cek Semester
+def cekSemester():
+    semesterBenar = False
+    pilihSemester = input("Semester berapa Anda?: ")
+    while semesterBenar == False:
+        if int(pilihSemester)>2 or int(pilihSemester)<1:
+            pilihSemester = input("Masukkan semester dengan benar! (1 atau 2): ")
+        else:
+            semesterBenar = True
+    return pilihSemester
+# Cek Semester\
+
 # Program
 inProdi = cekProdi()
 print('')
 inTingkat = cekTingkat()
 print('')
-print('Anda merupakan anggota dari '+ inProdi+' Tingkat '+str(inTingkat))
+inSemester = cekSemester()
+print('Anda merupakan anggota dari '+ inProdi+' Tingkat '+str(inTingkat)+' Semester '+str(inSemester))
