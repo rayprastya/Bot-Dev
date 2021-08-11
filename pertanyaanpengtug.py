@@ -11,6 +11,7 @@ D4LB = 'D4 Logistik Bisnis'
 D4LN = 'D4 Logistik Niaga'
 
 # Definisi Matkul D4TI
+
 MT111 = 'Matematika Diskrit'
 MT112 = 'Bahasa Indonesia'
 MT113 = 'Pendidikan Pancasila dan Kewarganegaraan'
@@ -61,19 +62,19 @@ MT327 = 'Multimedia System'
 MT328 = 'Distributor System'
 
 # Definisi Prodi Per Semester D4TI
-SEMESTER_1_TINGKAT_1 = [MT111, MT112, MT113, MT114, MT115, MT116, MT117]
-SEMESTER_2_TINGKAT_1 = [MT121, MT122, MT123, MT124, MT125, MT126, MT127]
+MT11 = [MT111, MT112, MT113, MT114, MT115, MT116, MT117]
+MT12 = [MT121, MT122, MT123, MT124, MT125, MT126, MT127]
 
-SEMESTER_1_TINGKAT_2 = [MT211, MT212, MT213, MT214, MT215, MT216, MT217, MT218]
-SEMESTER_2_TINGKAT_2 = [MT221, MT222, MT223, MT224, MT225, MT226, MT227]
+MT21 = [MT211, MT212, MT213, MT214, MT215, MT216, MT217, MT218]
+MT22 = [MT221, MT222, MT223, MT224, MT225, MT226, MT227]
 
-SEMESTER_1_TINGKAT_3 = [MT311, MT312, MT313, MT314, MT315, MT316]
-SEMESTER_2_TINGKAT_3 = [MT321, MT322, MT323, MT324, MT325, MT326, MT327, MT328]
+MT31 = [MT311, MT312, MT313, MT314, MT315, MT316]
+MT32 = [MT321, MT322, MT323, MT324, MT325, MT326, MT327, MT328]
 
 # Definisi Tingkat D4TI
-D4_TI_1 = [SEMESTER_1_TINGKAT_1, SEMESTER_2_TINGKAT_1]
-D4_TI_2 = [SEMESTER_1_TINGKAT_2, SEMESTER_2_TINGKAT_2]
-D4_TI_3 = [SEMESTER_1_TINGKAT_3, SEMESTER_2_TINGKAT_3]
+D4_TI_1 = [MT11, MT12]
+D4_TI_2 = [MT21, MT22]
+D4_TI_3 = [MT31, MT32]
 
 # Deklarasi Variabel
 daftarProdi = [D4TI,D3TI,D3MI,D3A,D4AK,D3MP,D4MP,D3AL,D4LB,D4LN]
@@ -117,10 +118,56 @@ def cekSemester():
     return pilihSemester
 # Cek Semester\
 
+# Get Daftar Matkul
+def getMatkul(prodi,tingkat,semester):
+    if tingkat == 1:
+        if semester == 1:
+            return MT11
+        elif semester == 2:
+            return MT12
+    elif tingkat == 2:
+        if semester == 1:
+            return MT21
+        elif semester == 2:
+            return MT22
+    elif tingkat == 3:
+        if semester == 1:
+            return MT31
+        elif semester == 2:
+            return MT32
+# Get Daftar Matkul\
+
+# Definisi Tugas
+
+tugasAktif = { 1: {"matkul": MT117, "tugas": "Kerjakan Modul Oracle DD 5-1"},
+               2: {"matkul": MT116, "tugas": "Latihan Excersice 1"}}
+
+# Definisi Tugas\
+
+# Cek & Kumpul Tugas
+
+def operasiTugas(inState):
+    if 'cek' in inState:
+        print('Daftar Tugas yang aktif: ')
+        for taktif in range(len(tugasAktif)):
+            print(str(taktif+1) + '. ' + tugasAktif[taktif+1]['matkul'] + ' | ' + tugasAktif[taktif+1]['tugas'])
+    elif 'kumpul' in inState:
+        print('coming soon')
+
+# Cek & Kumpul Tugas\
+
 # Program
 inProdi = cekProdi()
 print('')
 inTingkat = cekTingkat()
 print('')
 inSemester = cekSemester()
+inSemester = int(inSemester)
 print('Anda merupakan anggota dari '+ inProdi+' Tingkat '+str(inTingkat)+' Semester '+str(inSemester))
+print('Daftar Mata Kuliah yang Anda tempuh saat ini: ')
+daftarMatkul = getMatkul(inProdi,inTingkat,inSemester)
+for dm in range(len(daftarMatkul)):
+    print(str(dm+1)+'. '+daftarMatkul[dm])
+
+state = input("Silakan ketikkan yang akan anda lakukan (cek tugas, kumpul tugas [kode matkul], exit): ")
+operasiTugas(state)
