@@ -1,3 +1,19 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+driver=webdriver.Chrome(executable_path="C:\Projects\chromedriver.exe")
+
+driver.get("https://poltekpos.ac.id/program-studi")
+
+ambilJudulWeb = driver.title # Title of the page
+ambilClassProdi = driver.find_element_by_class_name('qx-blurb-title')
+ambilClassProdi = ambilClassProdi.text
+# print(driver.current_url) # returns the URL of the page
+
+# print(driver.page_source) # HTML code for the page
+
+driver.close() # close the browser
+
 # Definisi Prodi
 D3TI = 'D3 Teknik Informatika'
 D4TI = 'D4 Teknik Informatika'
@@ -157,6 +173,8 @@ def operasiTugas(inState):
 # Cek & Kumpul Tugas\
 
 # Program
+print(ambilJudulWeb)
+print(ambilClassProdi)
 inProdi = cekProdi()
 print('')
 inTingkat = cekTingkat()
