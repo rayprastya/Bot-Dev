@@ -1,6 +1,5 @@
 {
-    "editor.fontSize": 14,
-    "terminal.integrated.fontSize": 14,
-    "workbench.colorTheme": "Noctis Minimus",
-
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 14,
+  "workbench.colorTheme": "SynthWave '84"
 }
